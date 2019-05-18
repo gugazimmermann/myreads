@@ -1,22 +1,30 @@
 import React, {Component} from 'react'
-import Book from './Book';
+import PropTypes from 'prop-types'
+import Book from './Book'
 
 class Shelf extends Component {
 
     render() {
-        const {title, books} = this.props;
+        const {shelfId, title, shelves, books} = this.props;
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                     {books.map((b) => (
-                        <Book key={b.id.toString()} cover={b.imageLinks.smallThumbnail} title={b.title} authors={b.authors} />
+                        <Book key={b.id.toString()} shelfId={shelfId} shelves={shelves} book={b} />
                     ))}
                     </ol>
                 </div>
             </div>
         )
+    }
+
+    static propTypes = {
+        shelfId: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        shelves: PropTypes.array.isRequired,
+        books: PropTypes.array.isRequired,
     }
 }
 
