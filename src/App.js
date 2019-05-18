@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import logo from './book.png'
@@ -23,11 +23,12 @@ class BooksApp extends Component {
         title: "Read"
       }
     ],
-    books: []
+    books: [],
+    searchBooks: []
   }
 
   componentDidMount() {
-    this.getAll();
+    this.getAll()
   }
 
   getAll = () => {
@@ -37,11 +38,30 @@ class BooksApp extends Component {
   }
 
   handleChangeShelf = (book, event) => {
-    BooksAPI.update(book, event.target.value).then(r => {
-      this.getAll()
+    let value = (event.target.value) ? event.target.value : "none";
+    BooksAPI.update(book, value).then(r => {
+      this.getAll();
+      this.props.history.push('/');
     })
   }
 
+  handleClearSearch = () => {
+    this.setState({ searchBooks: [] })
+  }
+
+  handleSearch = (query) => {
+    BooksAPI.search(query).then(searchBooks => {
+      if (searchBooks.length > 0) {
+        for (let index in searchBooks) {
+          let booksExists = this.state.books.find(bk => searchBooks[index].id === bk.id);
+          if (booksExists) searchBooks[index] = booksExists
+        }
+        this.setState({ searchBooks: searchBooks })
+      } else {
+        this.handleClearSearch();
+      }
+    })
+  }
 
   render() {
     return (
@@ -56,10 +76,18 @@ class BooksApp extends Component {
             <SearchButton />
           </div>
         )} />
-        <Route path='/search' component={Search} />
+        <Route path='/search' render={() => (
+          <Search
+            shelves={this.state.shelves}
+            searchBooks={this.state.searchBooks}
+            handleClearSearch={this.handleClearSearch}
+            handleSearch={this.handleSearch}
+            handleChangeShelf={this.handleChangeShelf}
+          />
+        )} />
       </div>
     )
   }
 }
 
-export default BooksApp
+export default withRouter(BooksApp)

@@ -10,7 +10,7 @@ class Shelves extends Component {
     return (
       <div className="list-books-content">
       {shelves.map((s) => (
-        <Shelf key={s.id} shelfId={s.id} title={s.title} shelves={shelves} books={books.filter(b => b.shelf === s.id)} handleChangeShelf={handleChangeShelf} />
+        <Shelf key={s.id} title={s.title} shelves={shelves} books={books.filter(b => b.shelf === s.id)} handleChangeShelf={handleChangeShelf} />
       ))}
       </div>
     )
