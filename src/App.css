@@ -184,6 +184,8 @@ body, .app {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  background: #2c3b45;
+  color: white;
 }
 
 /* book cover */

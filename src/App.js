@@ -27,10 +27,21 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
+    this.getAll();
+  }
+
+  getAll = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({ books: books })
     })
   }
+
+  handleChangeShelf = (book, event) => {
+    BooksAPI.update(book, event.target.value).then(r => {
+      this.getAll()
+    })
+  }
+
 
   render() {
     return (
@@ -41,7 +52,7 @@ class BooksApp extends Component {
               <img alt="logo" src={logo} />
               <h1>MyReads</h1>
             </div>
-            <Shelves shelves={this.state.shelves} books={this.state.books} />
+            <Shelves shelves={this.state.shelves} books={this.state.books} handleChangeShelf={this.handleChangeShelf} />
             <SearchButton />
           </div>
         )} />

@@ -5,12 +5,12 @@ import Shelf from './Shelf'
 class Shelves extends Component {
 
   render() {
-    const {shelves, books} = this.props;
+    const {shelves, books, handleChangeShelf} = this.props;
 
     return (
       <div className="list-books-content">
       {shelves.map((s) => (
-        <Shelf key={s.id} shelfId={s.id} title={s.title} shelves={shelves} books={books.filter(b => b.shelf === s.id)} />
+        <Shelf key={s.id} shelfId={s.id} title={s.title} shelves={shelves} books={books.filter(b => b.shelf === s.id)} handleChangeShelf={handleChangeShelf} />
       ))}
       </div>
     )
