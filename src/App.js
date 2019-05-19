@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import logo from './book.png'
@@ -41,7 +41,12 @@ class BooksApp extends Component {
     let value = (event.target.value) ? event.target.value : "none";
     BooksAPI.update(book, value).then(r => {
       this.getAll();
-      this.props.history.push('/');
+      if (value !== "none") {
+        let newShelf = this.state.shelves.find(s => s.id === value);
+        alert(`${book.title} added to the shelf ${newShelf.title}`);
+      } else {
+        alert(`${book.title} removed`);
+      }
     })
   }
 
@@ -90,4 +95,4 @@ class BooksApp extends Component {
   }
 }
 
-export default withRouter(BooksApp)
+export default BooksApp
