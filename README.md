@@ -14,6 +14,8 @@ This project was made using Node.js, React.js, React Router DOM, PropTypes and t
 
 ### How To Install
 
+* clone the project with `git clone https://github.com/gugazimmermann/myreads.git`
+* go to the project folder `cd myreads`
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 * if the browser do not open automatically, go to: `http://localhost:3000/`
