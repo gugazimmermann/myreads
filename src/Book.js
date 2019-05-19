@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const Book = (props) => {
     const {shelves, book, handleChangeShelf} = props;
@@ -21,7 +22,12 @@ const Book = (props) => {
                         </select>
                     </div>
                 </div>
-                <div className="book-title">{book.title}</div>
+                <Link to={{
+                        pathname: `/book/${book.id}`,
+                        state: {
+                            book: book
+                        }
+                    }} className="book-title">{book.title}</Link>
                 <div className="book-authors">{author}</div>
             </div>
         </li>

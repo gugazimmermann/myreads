@@ -6,6 +6,7 @@ import logo from './book.png'
 import Shelves from './Shelves'
 import SearchButton from './SearchButton'
 import Search from './Search'
+import BookDetails from './BookDetails';
 
 class BooksApp extends Component {
   state = {
@@ -89,6 +90,9 @@ class BooksApp extends Component {
             handleSearch={this.handleSearch}
             handleChangeShelf={this.handleChangeShelf}
           />
+        )} />
+        <Route path='/book/:bookId' render={(props) => (
+          <BookDetails {...props} shelves={this.state.shelves} handleChangeShelf={this.handleChangeShelf} />
         )} />
       </div>
     )

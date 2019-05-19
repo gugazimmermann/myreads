@@ -89,8 +89,16 @@ body, .app {
 }
 
 .search-books-input-wrapper {
+  display: flex;
   flex: 1;
-  background: #e9e;
+  align-items: center;
+  background: white;
+}
+
+.search-books-bar h1 {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
 }
 
 .search-books-bar input {
@@ -152,6 +160,7 @@ body, .app {
 
 .book-title {
   margin-top: 10px;
+  color: #2c3b45;
 }
 
 .book-authors {
@@ -200,4 +209,37 @@ body, .app {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+.book-details-content {
+  margin: 0 auto;
+  padding: 80px 10px 20px;
+  font-size: medium;
+  width: 720px;
+  display: flex;
+  flex-direction: row;
+}
+
+.book-details {
+  margin: 0 10px;
+  width: 582px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-details-title {
+  margin: 0;
+  padding: 0;
+}
+
+.book-details-title small {
+  font-size: medium;
+  font-weight: normal;
+}
+
+.book-details-cover {
+  width: 128;
+  height: 193;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background: #eee;
 }
