@@ -2,12 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const BookDetails = (props) => {
-    const {shelves, handleChangeShelf} = props;
     const book = props.location.state.book;
     book.author = (book.authors) ? book.authors.join(', ') : "";
     book.image = (book.imageLinks) ? book.imageLinks.smallThumbnail : ""
     book.avgrating = (book.averageRating) ? book.averageRating : "-"
-    console.log(book);
+
     return (
         <div className="search-books">
             <div className="search-books-bar">

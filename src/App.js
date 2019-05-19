@@ -91,9 +91,7 @@ class BooksApp extends Component {
             handleChangeShelf={this.handleChangeShelf}
           />
         )} />
-        <Route path='/book/:bookId' render={(props) => (
-          <BookDetails {...props} shelves={this.state.shelves} handleChangeShelf={this.handleChangeShelf} />
-        )} />
+        <Route path='/book/:bookId' component={BookDetails} />
       </div>
     )
   }
